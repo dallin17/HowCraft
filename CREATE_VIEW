@@ -1,0 +1,10 @@
+Standard View:
+
+CREATE OR REPLACE VIEW 'default' AS SELECT material.ItemName FROM howtocraft.material WHERE material.isBaseMaterial = 0;
+
+
+Search View:
+
+CREATE OR REPLACE VIEW `search` AS SELECT material.MaterialName FROM howtocraft.Material 
+WHERE material.MaterialName = (Select material.MaterialName FROM howtocraft.material WHERE material.MaterialName = 
+(SELECT has.MaterialName from howtocraft.has WHERE has.RecipeID = (SELEct recipe.RecipeID from howtocraft.recipe where recipe.ItemName = 'Cobblestone Stairs')));;
